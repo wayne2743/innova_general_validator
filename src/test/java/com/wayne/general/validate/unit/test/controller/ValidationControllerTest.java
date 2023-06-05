@@ -1,5 +1,5 @@
 
-package com.wayne.general.validate.controller;
+package com.wayne.general.validate.unit.test.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.wayne.general.validate.controller.ValidationController;
 import com.wayne.general.validate.service.ValidationService;
 
 @SpringBootTest

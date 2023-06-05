@@ -1,4 +1,4 @@
-package com.wayne.general.validate.criteria;
+package com.wayne.general.validate.unit.test.criteria;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.wayne.general.validate.criteria.ImmediatelyContainsSameSequenceCriteria;
 
 @SpringBootTest
 class ImmediatelyContainsSameSequenceCriteriaTest {

@@ -1,6 +1,8 @@
-package com.wayne.general.validate.service;
+package com.wayne.general.validate.unit.test.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -12,6 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.wayne.general.validate.criteria.ImmediatelyContainsSameSequenceCriteria;
 import com.wayne.general.validate.criteria.LowerCaseAndDigitContainsCriteria;
 import com.wayne.general.validate.criteria.TextLengthRestrictionCriteria;
+import com.wayne.general.validate.service.ValidationService;
 import com.wayne.general.validate.validator.ProxyValidator;
 
 @SpringBootTest
@@ -34,8 +37,7 @@ class PasswordValidationServiceTest {
 												  Mockito.any(TextLengthRestrictionCriteria.class)))
 									.thenReturn(Boolean.TRUE);
 		
-		String validString = "test123";
-		assertThat(passwordValidationService.validate(validString)).isTrue();
+		assertThat(passwordValidationService.validate(UUID.randomUUID().toString())).isTrue();
 	}
 	
 	@Test
@@ -46,8 +48,7 @@ class PasswordValidationServiceTest {
 												  Mockito.any(TextLengthRestrictionCriteria.class)))
 									.thenReturn(Boolean.FALSE);
 		
-		String validString = "test123";
-		assertThat(passwordValidationService.validate(validString)).isFalse();
+		assertThat(passwordValidationService.validate(UUID.randomUUID().toString())).isFalse();
 	}	
 
 }

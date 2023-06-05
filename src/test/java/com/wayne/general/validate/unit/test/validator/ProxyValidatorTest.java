@@ -1,4 +1,4 @@
-package com.wayne.general.validate.validator;
+package com.wayne.general.validate.unit.test.validator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,6 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.wayne.general.validate.criteria.ImmediatelyContainsSameSequenceCriteria;
 import com.wayne.general.validate.criteria.LowerCaseAndDigitContainsCriteria;
 import com.wayne.general.validate.criteria.TextLengthRestrictionCriteria;
+import com.wayne.general.validate.validator.ProxyValidator;
+import com.wayne.general.validate.validator.Validator;
 
 @SpringBootTest
 class ProxyValidatorTest {
