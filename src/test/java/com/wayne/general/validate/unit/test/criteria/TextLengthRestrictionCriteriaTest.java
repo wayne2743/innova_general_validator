@@ -33,4 +33,19 @@ class TextLengthRestrictionCriteriaTest {
 		assertThat(textLengthRestrictionCriteria.check(upperBoundaryCharacterInput)).isFalse();
 	}
 
+	@Test
+	void whenNullInput_thenTextLengthRestrictionCriteriaThrowNullPointException() {
+		String validInput = null;
+		assertThrows(NullPointerException.class, () -> {
+			textLengthRestrictionCriteria.check(validInput);
+		});
+	}
+	
+	@Test
+	void whenEmptyInput_thenTextLengthRestrictionCriteriaThrowNullPointException() {
+		String validInput = "";
+		assertThrows(NullPointerException.class, () -> {
+			textLengthRestrictionCriteria.check(validInput);
+		});
+	}
 }

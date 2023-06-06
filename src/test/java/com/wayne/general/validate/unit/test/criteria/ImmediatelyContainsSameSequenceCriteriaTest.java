@@ -26,5 +26,21 @@ class ImmediatelyContainsSameSequenceCriteriaTest {
 		String invalidInput = "ttst";
 		assertThat(immediatelyContainsSameSequenceCriteria.check(invalidInput)).isFalse();
 	}
+	
+	@Test
+	void whenNullInput_thenTextLengthImmediatelyContainsSameSequenceShouldThrowNullPointException() {
+		String validInput = null;
+		assertThrows(NullPointerException.class, () -> {
+			immediatelyContainsSameSequenceCriteria.check(validInput);
+		});
+	}
+	
+	@Test
+	void whenEmptyInput_thenImmediatelyContainsSameSequenceShouldThrowNullPointException() {
+		String validInput = "";
+		assertThrows(NullPointerException.class, () -> {
+			immediatelyContainsSameSequenceCriteria.check(validInput);
+		});
+	}
 
 }

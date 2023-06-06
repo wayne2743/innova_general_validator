@@ -34,5 +34,21 @@ class LowerCaseAndDigitContainsCriteriaTest {
 		assertThat(lowerCaseAndDigitContainsCriteria.check(inValidTest)).isFalse();
 
 	}
+	
+	@Test
+	void whenNullInput_thenTextLengthLowerCaseAndDigitConstainsShouldThrowNullPointException() {
+		String validInput = null;
+		assertThrows(NullPointerException.class, () -> {
+			lowerCaseAndDigitContainsCriteria.check(validInput);
+		});
+	}
+	
+	@Test
+	void whenEmptyInput_thenLowerCaseAndDigitConstainsShouldThrowNullPointException() {
+		String validInput = "";
+		assertThrows(NullPointerException.class, () -> {
+			lowerCaseAndDigitContainsCriteria.check(validInput);
+		});
+	}
 
 }
