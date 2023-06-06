@@ -1,22 +1,16 @@
 package com.wayne.general.validate.criteria;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
-
 
 @Component
 public class LowerCaseAndDigitContainsCriteria extends Criteria {
-	
+
 	private static final String LOWER_CASE_AND_DIGIT_CONTAINS_REGEX = "^(?=.*[a-z])(?=.*[0-9]).*$";
 
-
 	public LowerCaseAndDigitContainsCriteria() {
-		super("lowerCaseAndDigitContains", 
+		super("lowerCaseAndDigitContains",
 				2,
 				"Must consist of a mixture of lowercase letters and numerical digits only, with at least one of each",
 				-1002);

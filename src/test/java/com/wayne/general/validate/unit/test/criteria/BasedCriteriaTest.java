@@ -1,13 +1,12 @@
 package com.wayne.general.validate.unit.test.criteria;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import com.wayne.general.validate.criteria.Criteria;
 
-public class BasedCriteriaTest {
+public abstract class BasedCriteriaTest {
 	
 	Criteria criteria;
 	
