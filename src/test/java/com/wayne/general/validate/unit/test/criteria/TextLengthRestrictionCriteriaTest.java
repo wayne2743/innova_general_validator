@@ -5,47 +5,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.wayne.general.validate.criteria.Criteria;
 import com.wayne.general.validate.criteria.TextLengthRestrictionCriteria;
 
 @SpringBootTest
-class TextLengthRestrictionCriteriaTest {
+class TextLengthRestrictionCriteriaTest extends BasedCriteriaTest{
 	
-	@Autowired
-	TextLengthRestrictionCriteria textLengthRestrictionCriteria;
-	
+	public TextLengthRestrictionCriteriaTest(@Autowired @Qualifier(value = "textLengthRestrictionCriteria") Criteria criteria) {
+		super(criteria);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Test
 	void whenValidInput_thenTextLengthRestrictionCriteriaReturnTrue() {
 		String validInput = "test123";
-		assertThat(textLengthRestrictionCriteria.check(validInput)).isTrue();
+		assertThat(criteria.check(validInput)).isTrue();
 	}
 	
 	@Test
 	void whenLowerBoundaryCharacterInput_thenTextLengthRestrictionCriteriaReturnFalse() {
 		String  lowerBondaryCharacterInput = "123";
-		assertThat(textLengthRestrictionCriteria.check(lowerBondaryCharacterInput)).isFalse();
+		assertThat(criteria.check(lowerBondaryCharacterInput)).isFalse();
 	}
 
 	@Test
 	void whenUpperBondaryCharacterInput_thenTextLengthRestrictionCriteriaReturnFalse() {
 		String  upperBoundaryCharacterInput = "test123123test";
-		assertThat(textLengthRestrictionCriteria.check(upperBoundaryCharacterInput)).isFalse();
+		assertThat(criteria.check(upperBoundaryCharacterInput)).isFalse();
 	}
 
-	@Test
-	void whenNullInput_thenTextLengthRestrictionCriteriaThrowNullPointException() {
-		String validInput = null;
-		assertThrows(NullPointerException.class, () -> {
-			textLengthRestrictionCriteria.check(validInput);
-		});
-	}
-	
-	@Test
-	void whenEmptyInput_thenTextLengthRestrictionCriteriaThrowNullPointException() {
-		String validInput = "";
-		assertThrows(NullPointerException.class, () -> {
-			textLengthRestrictionCriteria.check(validInput);
-		});
-	}
 }
