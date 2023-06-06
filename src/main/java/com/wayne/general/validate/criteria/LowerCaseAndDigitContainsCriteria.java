@@ -3,12 +3,17 @@ package com.wayne.general.validate.criteria;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 
 
 @Component
 public class LowerCaseAndDigitContainsCriteria extends Criteria {
+	
+	private static final String LOWER_CASE_AND_DIGIT_CONTAINS_REGEX = "^(?=.*[a-z])(?=.*[0-9]).*$";
+
 
 	public LowerCaseAndDigitContainsCriteria() {
 		super("lowerCaseAndDigitContains", 
@@ -18,10 +23,9 @@ public class LowerCaseAndDigitContainsCriteria extends Criteria {
 	}
 
 	@Override
-	public boolean check(String input) {
-		Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[0-9]).*$");
-		Matcher matcher = pattern.matcher(input);
-		return matcher.matches();
+	protected boolean checkCriteria(String input) {
+		Pattern pattern = Pattern.compile(LOWER_CASE_AND_DIGIT_CONTAINS_REGEX);
+		return pattern.matcher(input).matches();
 	}
 
 }

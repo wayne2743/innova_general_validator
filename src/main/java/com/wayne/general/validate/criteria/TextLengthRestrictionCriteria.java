@@ -14,8 +14,10 @@ public class TextLengthRestrictionCriteria extends Criteria {
 	}
 
 	@Override
-	public boolean check(String input) {
+	protected boolean checkCriteria(String input) {
 		return input.length() >= 5 && input.length() <=12;
 	}
+
+
 
 }

@@ -1,9 +1,12 @@
 package com.wayne.general.validate.criteria;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ImmediatelyContainsSameSequenceCriteria extends Criteria {
+	
 
 	public ImmediatelyContainsSameSequenceCriteria() {
 		super("immediatelyContainsSameSequence", 
@@ -13,7 +16,7 @@ public class ImmediatelyContainsSameSequenceCriteria extends Criteria {
 	}
 
 	@Override
-	public boolean check(String input) {
+	protected boolean checkCriteria(String input) {
 		char verification = '\u0000';
 		for(int i=0; i < input.length(); i++) {
 			if(input.charAt(i) == verification) {
