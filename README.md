@@ -37,4 +37,4 @@
         ).protocols(httpProtocol);
     }
 ```
-5. Then after modification, please run step 2-3 again to regenerate load testing remport.
+5. Then after modification, please run step 2-3 again to regenerate load testing report.
