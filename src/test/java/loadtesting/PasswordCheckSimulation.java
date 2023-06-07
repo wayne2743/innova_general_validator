@@ -23,7 +23,7 @@ public class PasswordCheckSimulation extends Simulation {
             feed(feeder)
             .exec(
                 http("Password Check: Valid Input")
-                    .get("/validate/password/check?input=#{searchCriterion}")
+                    .get("/validate/password/check?input=#{validInput}")
                     .check(
                        bodyString().is("true"),
                        status().is(200)
@@ -32,7 +32,7 @@ public class PasswordCheckSimulation extends Simulation {
             .pause(1)
             .exec(
                 http("Password Check: Invalid Input")
-                    .get("/validate/password/check?input=#{searchComputerName}")
+                    .get("/validate/password/check?input=#{invalidInput}")
                     .check(
                        bodyString().is("false"),
                        status().is(200)
