@@ -31,7 +31,7 @@ public class PasswordCheckSimulation extends Simulation {
                 http("Password Check: Valid Input")
                     .get("/validate/password/check?input=#{validInput}")
                     .check(
-                       bodyString().is("true"),
+                       bodyString().is("{\"httpStatus\":200,\"result\":\"Success\",\"errorCode\":0,\"errorMsg\":\"Sucess\"}"),
                        status().is(200)
                     )
             )
