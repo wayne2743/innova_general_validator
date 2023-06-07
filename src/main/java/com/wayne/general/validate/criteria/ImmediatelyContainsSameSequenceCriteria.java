@@ -2,6 +2,9 @@ package com.wayne.general.validate.criteria;
 
 import org.springframework.stereotype.Component;
 
+import com.wayne.general.validate.exception.ExceptionEnum;
+import com.wayne.general.validate.model.CriteriaException;
+
 @Component
 public class ImmediatelyContainsSameSequenceCriteria extends Criteria {
 	
@@ -14,11 +17,11 @@ public class ImmediatelyContainsSameSequenceCriteria extends Criteria {
 	}
 
 	@Override
-	protected boolean checkCriteria(String input) {
+	protected boolean checkCriteria(String input) throws CriteriaException {
 		char verification = '\u0000';
 		for(int i=0; i < input.length(); i++) {
 			if(input.charAt(i) == verification) {
-				return false;
+				throw ExceptionEnum.IMMEDIATELY_CONTAINS_SAME_SEQUENCE.toException();
 			};
 			verification = input.charAt(i);
 		}

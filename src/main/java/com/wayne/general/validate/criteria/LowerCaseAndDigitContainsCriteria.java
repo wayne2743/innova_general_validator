@@ -4,6 +4,9 @@ import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Component;
 
+import com.wayne.general.validate.exception.ExceptionEnum;
+import com.wayne.general.validate.model.CriteriaException;
+
 @Component
 public class LowerCaseAndDigitContainsCriteria extends Criteria {
 
@@ -17,9 +20,12 @@ public class LowerCaseAndDigitContainsCriteria extends Criteria {
 	}
 
 	@Override
-	protected boolean checkCriteria(String input) {
+	protected boolean checkCriteria(String input) throws CriteriaException {
 		Pattern pattern = Pattern.compile(LOWER_CASE_AND_DIGIT_CONTAINS_REGEX);
-		return pattern.matcher(input).matches();
+		if(!pattern.matcher(input).matches()){
+			throw ExceptionEnum.LOWER_CASE_AND_DIGIT_NOT_CONTAINS.toException();
+		}
+		return true;
 	}
 
 }

@@ -1,12 +1,18 @@
 package loadtesting;
 
-import static io.gatling.javaapi.core.CoreDsl.*;
-import static io.gatling.javaapi.http.HttpDsl.*;
+import static io.gatling.javaapi.core.CoreDsl.bodyString;
+import static io.gatling.javaapi.core.CoreDsl.csv;
+import static io.gatling.javaapi.core.CoreDsl.feed;
+import static io.gatling.javaapi.core.CoreDsl.rampUsers;
+import static io.gatling.javaapi.core.CoreDsl.scenario;
+import static io.gatling.javaapi.http.HttpDsl.http;
+import static io.gatling.javaapi.http.HttpDsl.status;
 
-import io.gatling.javaapi.core.*;
-import io.gatling.javaapi.http.*;
-
-import java.util.concurrent.ThreadLocalRandom;
+import io.gatling.javaapi.core.ChainBuilder;
+import io.gatling.javaapi.core.FeederBuilder;
+import io.gatling.javaapi.core.ScenarioBuilder;
+import io.gatling.javaapi.core.Simulation;
+import io.gatling.javaapi.http.HttpProtocolBuilder;
 
 /**
  * This sample is based on our official tutorials:
@@ -34,8 +40,7 @@ public class PasswordCheckSimulation extends Simulation {
                 http("Password Check: Invalid Input")
                     .get("/validate/password/check?input=#{invalidInput}")
                     .check(
-                       bodyString().is("false"),
-                       status().is(200)
+                       status().is(500)
                     )
             )
             ;

@@ -1,12 +1,20 @@
 package com.wayne.general.validate.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 
+import com.wayne.general.validate.exception.ExceptionEnum;
+import com.wayne.general.validate.model.CriteriaException;
+import com.wayne.general.validate.model.ValidatorResponse;
 import com.wayne.general.validate.service.ValidationService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +26,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping(value = "validate")
+
 public class ValidationController {
 
 	/**
@@ -36,7 +45,25 @@ public class ValidationController {
 		@ApiResponse(responseCode = "200", description = "Message Send OK!", 
 				content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
 	})
-	public boolean passwordCheck(@RequestParam @Parameter(example = "test123", description = PASSWORD_CHECK_FUNCTION_DES) String input) throws Exception {
-		return passwordValidationService.validate(input);
+	public ValidatorResponse passwordCheck(@RequestParam @Parameter(example = "test123", description = PASSWORD_CHECK_FUNCTION_DES) String input) throws Exception {
+		if(passwordValidationService.validate(input)){
+			return new ValidatorResponse(HttpStatus.OK.value(), 
+										 "Success", 
+										 ExceptionEnum.SUCCESS.toException().getErrorCode(), 
+										 ExceptionEnum.SUCCESS.toException().getErrorMsg());
+		};
+		throw ExceptionEnum.UNKOWN_EXCEPTION.toException();
+	}
+
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ValidatorResponse> exceptionHandler(CriteriaException exception, WebRequest request){
+		return new ResponseEntity<ValidatorResponse>(
+						new ValidatorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), 
+											  null, 
+											  exception.getErrorCode(), 
+											  exception.getErrorMsg()), 
+						new HttpHeaders(), 
+						HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

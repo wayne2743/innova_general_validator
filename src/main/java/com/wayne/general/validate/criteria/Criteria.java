@@ -3,6 +3,8 @@ package com.wayne.general.validate.criteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.wayne.general.validate.model.CriteriaException;
+
 public abstract class Criteria {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -19,7 +21,7 @@ public abstract class Criteria {
 		this.errorCode = errorCode;
 	}
 	
-	public boolean check(String input) {
+	public boolean check(String input) throws CriteriaException {
 		// Some verification before checked
 		if(input == null || input.equals("")) {
 			logger.error(String.format("Criteria input is empty : %s", this.getClass().getCanonicalName()));
@@ -28,6 +30,6 @@ public abstract class Criteria {
 		return checkCriteria(input);
 	};
 
-	protected abstract boolean checkCriteria(String input);
+	protected abstract boolean checkCriteria(String input) throws CriteriaException;
 
 }
