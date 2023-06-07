@@ -1,13 +1,13 @@
 # Getting Started
 
-## > Startup the RestFul service
+## > Startup the validator RestFul service
 1. Go to the home directory for "gneral-validator"
 2. Run the below command : 
 ```pwershell
 .\mvnw spring-boot:run
 ```
-3. You should see the service run on `http://loacalhost:8080`
-4. And could see more detail in `http://loacalhost:8080/swagger-ui/index.html` to find out all apis.
+3. You could find there has service run on `http://loacalhost:8080`
+4. Then see more detail in `http://loacalhost:8080/swagger-ui/index.html` to find out all apis.
 
 # Function Verification
 ## > Unit test & Integeration test
